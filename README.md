@@ -1,116 +1,184 @@
-## Medi-Match: AI-Driven Hospital Resource Optimization & Triage
 
-Medi-Match is an advanced healthcare management platform that integrates a modern WPF (.NET) frontend with a powerful Python-based AI intelligence layer. The system solves the complex problem of hospital resource allocation and emergency patient prioritization using a combination of Evolutionary Computing, Fuzzy Logic, and Rule-Based Expert Systems.
+# Medi-Match: AI-Driven Hospital Resource Optimization & Triage
 
-## Group Members & IDs
-
-Member 1 Afia Aziz - (ID: 231561 )
-
-Member 2 Zumer Dhillun  - (ID: 231597 )
-
-Member 3 Zoya Azad  - (ID: 231579 )
-
-## Project Summary
-
-In modern healthcare, manual scheduling of patients to specialists is inefficient and prone to human error. Medi-Match addresses this by automating the patient-to-doctor assignment process.
-
-## Core Features:
-
-AI Scheduler: Matches patients to doctors based on specialty, workload, and urgency.
-
-Emergency Triage System: A clinical tool that assesses patient symptoms to calculate an urgency score (1-10) and recommends a specific specialist (e.g., Cardiologist for Chest Pain).
-
-Optimization Engines: Offers two scheduling modes: a fast Heuristic Scheduler and a globally optimal Genetic Algorithm.
-
-Data Visualization: Real-time generation of convergence graphs to track AI performance.
-
-Professional Reporting: Automated HTML and Text clinical triage reports.
-
-## AI Techniques Used & Justification
-1. Fuzzy Logic (Urgency Normalization)
-
-Implementation: The calculate_fuzzy_score function transforms discrete urgency levels (1-10) into a continuous fuzzy set [0,1].
-
-Justification: Medical urgency is not binary. Fuzzy logic allows the system to handle the "shades of grey" in patient severity, ensuring smoother prioritization in the assignment matrix.
-
-2. Genetic Algorithm (Evolutionary Optimization)
-
-Implementation: Located in scheduler_ga.py. Uses Tournament Selection, Two-Point Crossover, and Mutation over 120 generations.
-
-Justification: Hospital scheduling is an NP-Hard problem. GA explores the vast search space of possible combinations to find a global optimum that balances doctor utilization and specialty match quality.
-
-3. Rule-Based Expert System (Clinical Mapping)
-
-Implementation: Uses a comprehensive clinical knowledge base (SPECIALTY_CONDITIONS) to map diseases and symptoms to medical departments and specialists.
-
-Justification: For medical safety, "Black Box" AI is dangerous. Rule-based systems provide transparent, auditable decision-making for specialist recommendations.
-
-4. Heuristic Greedy Search
-
-Implementation: A scoring-based heuristic that makes the locally optimal choice for rapid, real-time results when deep optimization is not required.
-
-## Knowledge Representation
-1. Semantic Network Diagram
-
-The Semantic Network represents the ontological relationships between clinical symptoms, departments, and AI scheduling logic.
-
-![alt text](Path/To/Your/semantic_network.png)
+Medi-Match is an advanced healthcare management platform that integrates a modern **WPF (.NET) frontend** with a powerful **Python-based AI intelligence layer**.  
+The system addresses the complex problem of **hospital resource allocation** and **emergency patient prioritization** using **Evolutionary Computing, Fuzzy Logic, and Rule-Based Expert Systems**.
 
 
-2. Frame-Based Representation
+##  Group Members
 
-Frames are used to define the "Slots and Fillers" architecture of our medical entities (Patient, Doctor, Triage).
+- **Afia Aziz** — ID: 231561  
+- **Zumer Dhillun** — ID: 231597  
+- **Zoya Azad** — ID: 231579  
 
-![alt text](Path/To/Your/frames_diagram.png)
+
+##  Project Summary
+
+In modern healthcare environments, manual scheduling of patients to doctors is inefficient and prone to human error.  
+**Medi-Match** automates the patient-to-doctor assignment process by intelligently analyzing urgency, specialty requirements, and doctor workload.
 
 
-## Setup & Run Instructions
-Prerequisites
+##  Core Features
 
-Visual Studio 2022 (with .NET Framework 4.7.2)
+- **AI Scheduler**  
+  Matches patients to doctors based on specialty, workload, and urgency.
 
-Python 3.8+ (Added to your System PATH)
+- **Emergency Triage System**  
+  Evaluates patient symptoms to calculate an urgency score (1–10) and recommends an appropriate specialist  
+  (e.g., Cardiologist for chest pain).
 
-# Required Python Libraries:
+- **Optimization Engines**
+  - Fast **Heuristic Scheduler**
+  - Globally optimal **Genetic Algorithm Scheduler**
+
+- **Data Visualization**  
+  Real-time convergence graphs showing AI performance.
+
+- **Professional Reporting**  
+  Automated **HTML** and **Text-based** clinical triage reports.
+
+
+##  AI Techniques Used & Justification
+
+### 1. Fuzzy Logic (Urgency Normalization)
+
+**Implementation:**  
+The `calculate_fuzzy_score` function converts discrete urgency levels (1–10) into a continuous fuzzy range \([0, 1]\).
+
+**Justification:**  
+Medical urgency is not binary. Fuzzy logic handles uncertainty and allows smoother prioritization of patients.
+
+
+### 2. Genetic Algorithm (Evolutionary Optimization)
+
+**Implementation:**  
+Implemented in `scheduler_ga.py` using:
+- Tournament Selection  
+- Two-Point Crossover  
+- Mutation  
+- 120 Generations  
+
+**Justification:**  
+Hospital scheduling is an **NP-Hard problem**. Genetic Algorithms efficiently explore large search spaces to find globally optimal schedules.
+
+---
+
+### 3. Rule-Based Expert System (Clinical Mapping)
+
+**Implementation:**  
+Uses a clinical knowledge base (`SPECIALTY_CONDITIONS`) to map symptoms and diseases to medical specialties.
+
+**Justification:**  
+In healthcare, transparency is critical. Rule-based systems provide **explainable and auditable** decision-making.
+
+
+### 4. Heuristic Greedy Search
+
+**Implementation:**  
+A scoring-based heuristic algorithm that selects locally optimal assignments.
+
+**Justification:**  
+Provides fast, real-time scheduling when deep optimization is not required.
+
+
+##  Knowledge Representation
+
+### 1. Semantic Network Diagram
+
+Represents relationships between:
+- Symptoms  
+- Medical Departments  
+- AI Scheduling Logic  
+
+![Semantic Network](Path/To/Your/semantic_network.png)
+
+
+### 2. Frame-Based Representation
+
+Defines medical entities using **slots and fillers**:
+- Patient  
+- Doctor  
+- Triage  
+
+![Frame Representation](Path/To/Your/frames_diagram.png)
+
+
+##  Setup & Run Instructions
+
+###  Prerequisites
+
+- **Visual Studio 2022** (with .NET Framework 4.7.2)
+- **Python 3.8+** (added to System PATH)
+
+
+### Required Python Libraries
+
+```bash
 pip install numpy matplotlib
+````
 
-# Running the Project
-1. Clone the Repository:
-   
+---
+
+##  Running the Project
+
+### 1. Clone the Repository
+
+```bash
 git clone https://github.com/YourUsername/Medi-Match.git
+```
 
-2. Open the Solution: Open the .sln file in Visual Studio.
+### 2. Open the Solution
 
-3. Build: Clean and Rebuild the solution.
+Open the `.sln` file in **Visual Studio**.
 
-4. Run: Press F5 to launch the WPF application.
+### 3. Build
 
-5. Operation:
+Clean and rebuild the solution.
 
-- Navigate to Triage to assess an emergency patient and generate a report.
+### 4. Run
 
-- Navigate to Scheduler to enter hospital resources and run the AI optimization.
+Press **F5** to launch the WPF application.
 
-- View the Graph page to see the AI's convergence performance.
 
-## Project Structure
+##  Application Usage
 
-HospitalSchedulerUI/ - WPF Frontend source code (C# / XAML).
+* **Triage Module:**
+  Assess emergency patients and generate clinical reports.
 
-Backend/PythonScripts/ - AI Logic Engines:
+* **Scheduler Module:**
+  Enter hospital resources and run AI-based optimization.
 
-scheduler.py: Main heuristic script.
+* **Graphs Page:**
+  View convergence graphs showing AI performance.
 
-scheduler_ga.py: Genetic Algorithm optimization.
 
-triage_calculator.py: Emergency assessment logic.
+##  Project Structure
 
-Results/ - Output folder for output.json, metrics.csv, and convergence.png.
+```
+HospitalSchedulerUI/
+│
+├── WPF Frontend (C# / XAML)
+│
+├── Backend/
+│   └── PythonScripts/
+│       ├── scheduler.py          # Heuristic Scheduler
+│       ├── scheduler_ga.py       # Genetic Algorithm
+│       └── triage_calculator.py  # Emergency Triage Logic
+│
+├── Results/
+│   ├── output.json
+│   ├── metrics.csv
+│   └── convergence.png
+```
 
-## Sample Result Contract
 
-The system ensures reliability through a strict JSON contract.
-Sample input.json:
+##  Sample Result Contract
+
+The system ensures reliability using a strict **JSON input/output contract**.
+
+### Sample `input.json`
+
+```json
 {
   "Doctors": 3,
   "Patients": 5,
@@ -119,7 +187,9 @@ Sample input.json:
   ],
   "Urgency": [9, 4, 2, 8, 5]
 }
+```
 
-## License
 
-This project was developed as part of the Artificial Intelligence Course. Distributed for educational purposes.
+##  License
+
+This project was developed as part of the **Artificial Intelligence course** and is distributed for **educational purposes only**.
