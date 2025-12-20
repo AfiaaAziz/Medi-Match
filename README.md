@@ -61,7 +61,6 @@ Implemented in `scheduler_ga.py` using:
 **Justification:**  
 Hospital scheduling is an **NP-Hard problem**. Genetic Algorithms efficiently explore large search spaces to find globally optimal schedules.
 
----
 
 ### 3. Rule-Based Expert System (Clinical Mapping)
 
