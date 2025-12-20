@@ -89,7 +89,7 @@ Represents relationships between:
 - Medical Departments  
 - AI Scheduling Logic  
 
-![Semantic Network]((https://raw.githubusercontent.com/AfiaaAziz/Medi-Match/main/semantic_network.png)
+![Semantic Network](semantic_network.png)
 
 
 ### 2. Frame-Based Representation
@@ -99,7 +99,7 @@ Defines medical entities using **slots and fillers**:
 - Doctor  
 - Triage  
 
-![Frame-Based Representation](https://raw.githubusercontent.com/AfiaaAziz/Medi-Match/main/frames_diagram.png)
+![Frame-Based Representation](frames_diagram.png)
 
 
 ##  Setup & Run Instructions
