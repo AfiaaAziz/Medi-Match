@@ -1,0 +1,9 @@
+﻿{
+  "Name": "afia",
+  "Age": 30,
+  "MainSymptom": "High Fever",
+  "Urgency": 4,
+  "Priority": "Non-Urgent",
+  "RecommendedDepartment": "Internal Medicine",
+  "Time": "2025-12-17T15:45:42"
+}

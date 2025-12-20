@@ -1,0 +1,195 @@
+﻿<UserControl x:Class="HospitalSchedulerUI.EmergencyTriage"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Background="White">
+
+    <Grid>
+        <!-- Header (Matches your Medi-Match theme) -->
+        <Border Background="#1a5276" Height="100" VerticalAlignment="Top">
+            <StackPanel VerticalAlignment="Center">
+                <TextBlock Text="EMERGENCY TRIAGE SYSTEM" 
+                          Foreground="White" 
+                          FontSize="28" 
+                          FontWeight="Bold"
+                          HorizontalAlignment="Center"/>
+                <TextBlock Text="AI-Powered Symptom Assessment &amp; Priority Calculator" 
+                          Foreground="#aed6f1" 
+                          FontSize="14"
+                          HorizontalAlignment="Center"
+                          Margin="0,5,0,0"/>
+            </StackPanel>
+        </Border>
+
+        <!-- Main Content Area -->
+        <ScrollViewer Margin="0,100,0,0" VerticalScrollBarVisibility="Auto">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- LEFT SIDE: Input Form -->
+                <Border Grid.Column="0" Margin="20,20,10,20" BorderBrush="#d5d8dc" BorderThickness="1" CornerRadius="10" Background="#f8f9f9">
+                    <StackPanel Margin="20">
+                        <!-- Add spacing between elements using Margin -->
+
+                        <!-- Patient Information -->
+                        <GroupBox Header="PATIENT INFORMATION" FontWeight="Bold" Foreground="#1a5276" Margin="0,0,0,15">
+                            <StackPanel Margin="10">
+                                <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                                    <TextBlock Text="Full Name:" Width="120" VerticalAlignment="Center" FontWeight="SemiBold"/>
+                                    <TextBox x:Name="txtPatientName" Width="250" Height="30" Padding="5" BorderBrush="#1a5276"/>
+                                </StackPanel>
+
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Age:" Width="120" VerticalAlignment="Center" FontWeight="SemiBold"/>
+                                    <TextBox x:Name="txtAge" Width="100" Height="30" Padding="5" BorderBrush="#1a5276" Text="30"/>
+                                </StackPanel>
+                            </StackPanel>
+                        </GroupBox>
+
+                        <!-- Symptoms Selection -->
+                        <GroupBox Header="SYMPTOMS (Select All That Apply)" FontWeight="Bold" Foreground="#1a5276" Margin="0,0,0,15">
+                            <WrapPanel Margin="10">
+                                <CheckBox x:Name="chkChestPain" Content="Chest Pain" Margin="10,8" FontSize="13"/>
+                                <CheckBox x:Name="chkBreathing" Content="Difficulty Breathing" Margin="10,8" FontSize="13"/>
+                                <CheckBox x:Name="chkBleeding" Content="Severe Bleeding" Margin="10,8" FontSize="13"/>
+                                <CheckBox x:Name="chkFever" Content="High Fever (&gt;102&amp;deg;F)" Margin="10,8" FontSize="13"/>
+                                <CheckBox x:Name="chkHeadInjury" Content="Head Injury" Margin="10,8" FontSize="13"/>
+                                <CheckBox x:Name="chkBrokenBone" Content="Broken Bone/Fracture" Margin="10,8" FontSize="13"/>
+                                <CheckBox x:Name="chkAbdominalPain" Content="Severe Abdominal Pain" Margin="10,8" FontSize="13"/>
+                                <CheckBox x:Name="chkDizziness" Content="Dizziness/Fainting" Margin="10,8" FontSize="13"/>
+                                <CheckBox x:Name="chkUnconscious" Content="Unconscious/Confused" Margin="10,8" FontSize="13"/>
+                                <CheckBox x:Name="chkBurn" Content="Severe Burns" Margin="10,8" FontSize="13"/>
+                            </WrapPanel>
+                        </GroupBox>
+
+                        <!-- Pain Level -->
+                        <GroupBox Header="PAIN LEVEL ASSESSMENT" FontWeight="Bold" Foreground="#1a5276" Margin="0,0,0,20">
+                            <StackPanel Margin="10">
+                                <Slider x:Name="sliderPain" Minimum="1" Maximum="10" 
+                                        TickFrequency="1" IsSnapToTickEnabled="True"
+                                        Width="300" Margin="0,10,0,10" Value="5"/>
+
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                    <TextBlock Text="Mild" Foreground="Green" Margin="0,0,30,0"/>
+                                    <TextBlock x:Name="lblPainValue" Text="5 - Moderate" 
+                                               FontWeight="Bold" FontSize="14" Foreground="#1a5276" Margin="0,0,30,0"/>
+                                    <TextBlock Text="Severe" Foreground="Red"/>
+                                </StackPanel>
+                            </StackPanel>
+                        </GroupBox>
+
+                        <!-- Calculate Button -->
+                        <Button x:Name="btnCalculate" Content="ASSESS EMERGENCY LEVEL" 
+                                Background="#e74c3c" Foreground="White" 
+                                FontWeight="Bold" FontSize="16"
+                                Height="45" Width="350"
+                                HorizontalAlignment="Center"
+                                Margin="0,10"
+                                BorderBrush="#c0392b" BorderThickness="2"
+                                Cursor="Hand">
+                            <Button.Effect>
+                                <DropShadowEffect BlurRadius="10" ShadowDepth="3"/>
+                            </Button.Effect>
+                        </Button>
+
+                    </StackPanel>
+                </Border>
+
+                <!-- RIGHT SIDE: Results Display -->
+                <Border Grid.Column="1" Margin="10,20,20,20" BorderBrush="#d5d8dc" BorderThickness="1" CornerRadius="10" Background="#f8f9f9">
+                    <StackPanel Margin="25">
+                        <!-- Add spacing between elements using Margin on each element -->
+
+                        <TextBlock Text="TRIAGE ASSESSMENT RESULTS" 
+                                   FontSize="20" FontWeight="Bold" 
+                                   Foreground="#1a5276" 
+                                   HorizontalAlignment="Center"
+                                   Margin="0,0,0,20"/>
+
+                        <!-- Urgency Level Display -->
+                        <Border x:Name="borderUrgency" BorderBrush="#1a5276" BorderThickness="2" 
+                                CornerRadius="10" Background="#e8f4fc" Padding="20"
+                                Margin="0,0,0,20">
+                            <StackPanel>
+                                <TextBlock Text="URGENCY LEVEL" 
+                                           FontSize="16" FontWeight="Bold" 
+                                           HorizontalAlignment="Center" Margin="0,0,0,10"/>
+
+                                <TextBlock x:Name="txtUrgencyScore" Text="--/10" 
+                                           FontSize="48" FontWeight="Bold" 
+                                           HorizontalAlignment="Center" Foreground="#1a5276"/>
+
+                                <Border x:Name="urgencyColorBar" Height="20" 
+                                        Margin="20,10,20,0" CornerRadius="10" 
+                                        Background="LightGray"/>
+                            </StackPanel>
+                        </Border>
+
+                        <!-- Priority &amp; Action -->
+                        <GroupBox Header="PRIORITY &amp; RECOMMENDATION" Margin="0,0,0,20">
+                            <StackPanel Margin="10">
+                                <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
+                                    <TextBlock Text="Priority:" Width="100" FontWeight="Bold"/>
+                                    <TextBlock x:Name="txtPriority" Text="--" FontSize="14" Foreground="#e74c3c" FontWeight="Bold"/>
+                                </StackPanel>
+
+                                <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
+                                    <TextBlock Text="Action:" Width="100" FontWeight="Bold"/>
+                                    <TextBlock x:Name="txtAction" Text="--" FontSize="14"/>
+                                </StackPanel>
+
+                                <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
+                                    <TextBlock Text="Department:" Width="100" FontWeight="Bold"/>
+                                    <TextBlock x:Name="txtDepartment" Text="--" FontSize="14"/>
+                                </StackPanel>
+
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Wait Time:" Width="100" FontWeight="Bold"/>
+                                    <TextBlock x:Name="txtWaitTime" Text="--" FontSize="14"/>
+                                </StackPanel>
+                            </StackPanel>
+                        </GroupBox>
+
+                        <!-- Details -->
+                        <GroupBox Header="DETAILS" Margin="0,0,0,20">
+                            <StackPanel Margin="10">
+                                <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
+                                    <TextBlock Text="Main Symptom:" Width="120" FontWeight="SemiBold"/>
+                                    <TextBlock x:Name="txtMainSymptom" Text="--" FontSize="13"/>
+                                </StackPanel>
+
+                                <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
+                                    <TextBlock Text="Total Symptoms:" Width="120" FontWeight="SemiBold"/>
+                                    <TextBlock x:Name="txtSymptomsCount" Text="--" FontSize="13"/>
+                                </StackPanel>
+
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="AI Score:" Width="120" FontWeight="SemiBold"/>
+                                    <TextBlock x:Name="txtAIScore" Text="--" FontSize="13"/>
+                                </StackPanel>
+                            </StackPanel>
+                        </GroupBox>
+
+                        <!-- Action Buttons -->
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,20">
+                      
+
+                            <Button x:Name="btnPrintReport" Content="PRINT REPORT" 
+                                    Background="#27ae60" Foreground="White"
+                                    Height="35" Width="150" FontWeight="Bold"
+                                    Cursor="Hand"/>
+                        </StackPanel>
+
+                        <!-- Status Message -->
+                        <TextBlock x:Name="txtStatus" Text="Fill form and click 'Assess Emergency Level'" 
+                                   HorizontalAlignment="Center" FontStyle="Italic" 
+                                   Foreground="#7f8c8d"/>
+
+                    </StackPanel>
+                </Border>
+            </Grid>
+        </ScrollViewer>
+    </Grid>
+</UserControl>
