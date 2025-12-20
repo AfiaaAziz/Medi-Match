@@ -116,7 +116,6 @@ Defines medical entities using **slots and fillers**:
 pip install numpy matplotlib
 ````
 
----
 
 ##  Running the Project
 
