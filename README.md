@@ -1,83 +1,125 @@
-# Medi-Match
+## Medi-Match: AI-Driven Hospital Resource Optimization & Triage
 
-A WPF desktop frontend (.NET Framework 4.7.2) that integrates with a Python-based scheduling engine to assign patients to doctors and beds using deterministic decision techniques).
+Medi-Match is an advanced healthcare management platform that integrates a modern WPF (.NET) frontend with a powerful Python-based AI intelligence layer. The system solves the complex problem of hospital resource allocation and emergency patient prioritization using a combination of Evolutionary Computing, Fuzzy Logic, and Rule-Based Expert Systems.
 
-## Overview
-This project demonstrates a hospital scheduling workflow where a WPF UI prepares scheduling inputs and launches a Python scheduler located at `Backend/PythonScripts/scheduler.py`. The scheduler performs fuzzy scoring, rule-based specialty matching, and heuristic assignment to produce assignment results and metrics.
+## Group Members & IDs
 
-## Key Features
-- WPF-based UI (`MainWindow`, `LandingWindow`, `AboutWindow`) to prepare and run schedules.  
-- Python scheduler that:
-  - Normalizes urgency using fuzzy scoring
-  - Matches patient diseases to specialties via rules
-  - Uses a weighted heuristic scoring function and greedy assignment with simple load balancing
-  - Emits `Results/output.json` and `Results/metrics.csv`; optionally creates `Results/convergence.png` if `matplotlib` is installed
-- Integration contract: UI waits for exact success line printed by the scheduler:  
-  `SUCCESS — ALL FILES SAVED!`
+Member 1 Afia Aziz - (ID: 231561 )
 
-## Architecture & File Contract
-- Frontend: WPF (.NET Framework 4.7.2). The UI creates `Backend/PythonScripts/input.json`, launches the Python process, and reads `Results/output.json`.
-- Backend: `Backend/PythonScripts/scheduler.py`:
-  - Reads `input.json` from the same folder as the script.
-  - Writes results into the `Results` folder at the project root.
-- Important files:
-  - `Backend/PythonScripts/scheduler.py` — scheduler engine
-  - `Backend/PythonScripts/input.json` — input contract (created by UI or manual test)
-  - `Results/output.json` — scheduling result consumed by UI
-  - `Results/metrics.csv` — run statistics
-  - `Results/convergence.png` — optional visualization
+Member 2 Zumer Dhillun  - (ID: 231597 )
 
-## AI Techniques & Algorithms Used
-This project does NOT use machine learning or deep learning. It uses deterministic decision techniques:
+Member 3 Zoya Azad  - (ID: 231579 )
 
-1. Fuzzy logic (soft scoring)  
-   - `calculate_fuzzy_score` in `scheduler.py` — normalizes urgency (1..10) into a fuzzy score.
+## Project Summary
 
-2. Rule-based / expert system  
-   - `SPECIALTY_CONDITIONS` in `scheduler.py` — explicit disease → specialty rules and referral logic.
+In modern healthcare, manual scheduling of patients to specialists is inefficient and prone to human error. Medi-Match addresses this by automating the patient-to-doctor assignment process.
 
-3. Heuristic multi-criteria scoring + greedy assignment  
-   - Per-patient scoring function (perfect-match bonus + load balancing + urgency weight) and greedy assignment using `doctor_patient_count`.
+## Core Features:
 
-These are deterministic, interpretable methods (no model training, no inference frameworks).
+AI Scheduler: Matches patients to doctors based on specialty, workload, and urgency.
 
-## Requirements
-- Visual Studio 2022  
-- .NET Framework 4.7.2 (project target)  
-- Python 3.8+ (ensure `python` or `python3` is on PATH)  
-- Python packages: `numpy`; `matplotlib` optional for the convergence chart
+Emergency Triage System: A clinical tool that assesses patient symptoms to calculate an urgency score (1-10) and recommends a specific specialist (e.g., Cardiologist for Chest Pain).
 
-Install Python packages:
+Optimization Engines: Offers two scheduling modes: a fast Heuristic Scheduler and a globally optimal Genetic Algorithm.
+
+Data Visualization: Real-time generation of convergence graphs to track AI performance.
+
+Professional Reporting: Automated HTML and Text clinical triage reports.
+
+## AI Techniques Used & Justification
+1. Fuzzy Logic (Urgency Normalization)
+
+Implementation: The calculate_fuzzy_score function transforms discrete urgency levels (1-10) into a continuous fuzzy set [0,1].
+
+Justification: Medical urgency is not binary. Fuzzy logic allows the system to handle the "shades of grey" in patient severity, ensuring smoother prioritization in the assignment matrix.
+
+2. Genetic Algorithm (Evolutionary Optimization)
+
+Implementation: Located in scheduler_ga.py. Uses Tournament Selection, Two-Point Crossover, and Mutation over 120 generations.
+
+Justification: Hospital scheduling is an NP-Hard problem. GA explores the vast search space of possible combinations to find a global optimum that balances doctor utilization and specialty match quality.
+
+3. Rule-Based Expert System (Clinical Mapping)
+
+Implementation: Uses a comprehensive clinical knowledge base (SPECIALTY_CONDITIONS) to map diseases and symptoms to medical departments and specialists.
+
+Justification: For medical safety, "Black Box" AI is dangerous. Rule-based systems provide transparent, auditable decision-making for specialist recommendations.
+
+4. Heuristic Greedy Search
+
+Implementation: A scoring-based heuristic that makes the locally optimal choice for rapid, real-time results when deep optimization is not required.
+
+## Knowledge Representation
+1. Semantic Network Diagram
+
+The Semantic Network represents the ontological relationships between clinical symptoms, departments, and AI scheduling logic.
+
+![alt text](Path/To/Your/semantic_network.png)
+
+
+2. Frame-Based Representation
+
+Frames are used to define the "Slots and Fillers" architecture of our medical entities (Patient, Doctor, Triage).
+
+![alt text](Path/To/Your/frames_diagram.png)
+
+
+## Setup & Run Instructions
+Prerequisites
+
+Visual Studio 2022 (with .NET Framework 4.7.2)
+
+Python 3.8+ (Added to your System PATH)
+
+# Required Python Libraries:
 pip install numpy matplotlib
 
-If you don’t want the chart, `numpy` alone is sufficient:
-pip install numpy
+# Running the Project
+1. Clone the Repository:
+   
+git clone https://github.com/YourUsername/Medi-Match.git
 
+2. Open the Solution: Open the .sln file in Visual Studio.
 
-## Run / Debug Instructions
+3. Build: Clean and Rebuild the solution.
 
-From Visual Studio:
-1. Open solution in Visual Studio 2022.
-2. Ensure WPF project is startup project.
-3. Build via __Build > Build Solution__.
-4. Start app via __Debug > Start Debugging__ or __Debug > Start Without Debugging__.
-5. Use the UI action to run scheduling — the UI will write `Backend/PythonScripts/input.json`, run the scheduler, then read `Results/output.json`.
+4. Run: Press F5 to launch the WPF application.
 
-Run the scheduler manually (for testing):
-cd Backend/PythonScripts python scheduler.py
+5. Operation:
 
+- Navigate to Triage to assess an emergency patient and generate a report.
 
-The UI expects the scheduler to print the exact completion string:
-`SUCCESS — ALL FILES SAVED!`
+- Navigate to Scheduler to enter hospital resources and run the AI optimization.
 
-## Sample `input.json`
-Place this in `Backend/PythonScripts/input.json` for manual testing or let the UI generate it:
+- View the Graph page to see the AI's convergence performance.
 
-Backend/PythonScripts/input.json { "Doctors": 3, "Patients": 6, "Beds": 4, "Urgency": [7, 4, 9, 3, 6, 8], "DoctorDetails": [ {"Name": "Dr. Ali", "Specialty": "Cardiology"}, {"Name": "Dr. Fahad", "Specialty": "Neurology"}, {"Name": "Dr. Amna", "Specialty": "Pediatrics"} ], "PatientDetails": [ {"Name": "Sara", "Disease": "Heart Attack", "Age": 63}, {"Name": "Anfal", "Disease": "Migraine", "Age": 28}, {"Name": "Sidra", "Disease": "Fever", "Age": 2}, {"Name": "Fatima", "Disease": "Fracture", "Age": 40}, {"Name": "Umer", "Disease": "Hypertension", "Age": 70}, {"Name": "Saad", "Disease": "Asthma", "Age": 12} ] }
+## Project Structure
 
+HospitalSchedulerUI/ - WPF Frontend source code (C# / XAML).
 
-## Troubleshooting
-- "Could not read input.json": ensure `input.json` exists next to `scheduler.py` in `Backend/PythonScripts`.
-- Missing Python packages: run `pip install numpy matplotlib`.
-- UI never shows success: run `scheduler.py` manually to inspect stderr/stdout; the scheduler prints debug messages and the final success line.
-- Permission/IO issues: ensure the app and Python have write access to the project `Results` folder.
+Backend/PythonScripts/ - AI Logic Engines:
+
+scheduler.py: Main heuristic script.
+
+scheduler_ga.py: Genetic Algorithm optimization.
+
+triage_calculator.py: Emergency assessment logic.
+
+Results/ - Output folder for output.json, metrics.csv, and convergence.png.
+
+## Sample Result Contract
+
+The system ensures reliability through a strict JSON contract.
+Sample input.json:
+{
+  "Doctors": 3,
+  "Patients": 5,
+  "DoctorDetails": [
+    { "Name": "Dr. Smith", "Specialty": "Cardiology" }
+  ],
+  "Urgency": [9, 4, 2, 8, 5]
+}
+
+## License
+
+This project was developed as part of the Artificial Intelligence Course. Distributed for educational purposes.
