@@ -1,0 +1,5 @@
+{
+  "Doctors": 5,
+  "Patients": 10,
+  "Beds": 5
+}

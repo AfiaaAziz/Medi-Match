@@ -1,0 +1,45 @@
+{
+  "Doctors": 2,
+  "Patients": 3,
+  "Beds": 4,
+  "Urgency": [
+    8,
+    5,
+    10
+  ],
+  "DoctorDetails": [
+    {
+      "Name": "kiran",
+      "Specialty": "Orthopedics"
+    },
+    {
+      "Name": "Aiman",
+      "Specialty": "Emergency"
+    }
+  ],
+  "PatientDetails": [
+    {
+      "Name": "Ali",
+      "Disease": "Appendicitis",
+      "Age": 87,
+      "Urgency": 8
+    },
+    {
+      "Name": "Ahsan",
+      "Disease": "Heart Attack",
+      "Age": 15,
+      "Urgency": 5
+    },
+    {
+      "Name": "Ali",
+      "Disease": "Migraine",
+      "Age": 22,
+      "Urgency": 10
+    }
+  ],
+  "UseGA": true,
+  "GAPopulation": 50,
+  "GAGenerations": 100,
+  "GAMutation": 0.06,
+  "GASeed": 11
+}
