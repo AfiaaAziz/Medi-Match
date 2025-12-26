@@ -11,3 +11,7 @@ packages/
 
 # Logs
 *.log
+
+Results/
+*.pkl
+*.csv
