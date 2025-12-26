@@ -2,13 +2,13 @@ Metric,Value
 AI Technique,Genetic Algorithm (GA)
 Status,Success
 Total Doctors,2
-Total Patients,3
-Total Beds,4
-Perfect Specialty Matches,1
+Total Patients,2
+Total Beds,40
+Perfect Specialty Matches,0
 Referrals Needed,0
 No Matches,2
 Patients without Doctor Assignment,0
-Match Success Rate,33.3%
-Average Urgency,7.67
-Best Fitness,54.5
+Match Success Rate,0.0%
+Average Urgency,6.5
+Best Fitness,-2.0
 Generations Ran,12

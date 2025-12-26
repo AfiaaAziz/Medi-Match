@@ -1,45 +1,37 @@
 {
   "Doctors": 2,
-  "Patients": 3,
-  "Beds": 4,
+  "Patients": 2,
+  "Beds": 40,
   "Urgency": [
     8,
-    5,
-    10
+    5
   ],
   "DoctorDetails": [
     {
-      "Name": "kiran",
-      "Specialty": "Orthopedics"
+      "Name": "umer",
+      "Specialty": "Pediatrics"
     },
     {
-      "Name": "Aiman",
+      "Name": "saman",
       "Specialty": "Emergency"
     }
   ],
   "PatientDetails": [
     {
-      "Name": "Ali",
-      "Disease": "Appendicitis",
-      "Age": 87,
+      "Name": "hassan",
+      "Disease": "Diabetes",
+      "Age": 12,
       "Urgency": 8
     },
     {
-      "Name": "Ahsan",
-      "Disease": "Heart Attack",
-      "Age": 15,
+      "Name": "sidra batool",
+      "Disease": "Broken Arm",
+      "Age": 10,
       "Urgency": 5
-    },
-    {
-      "Name": "Ali",
-      "Disease": "Migraine",
-      "Age": 22,
-      "Urgency": 10
     }
   ],
   "UseGA": true,
-  "GAPopulation": 50,
-  "GAGenerations": 100,
-  "GAMutation": 0.06,
-  "GASeed": 11
+  "GAPopulation": 80,
+  "GAGenerations": 120,
+  "GAMutation": 0.06
 }

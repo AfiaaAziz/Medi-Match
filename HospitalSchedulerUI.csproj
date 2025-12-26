@@ -80,6 +80,10 @@
     <Page Include="AboutWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
+	  <Page Include="DiseasePrediction.xaml">
+		  <SubType>Designer</SubType>
+		  <Generator>MSBuild:Compile</Generator>
+	  </Page>
     <Page Include="EmergencyTriage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -98,9 +102,13 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+	  <Compile Include="DiseasePrediction.xaml.cs">
+		  <DependentUpon>DiseasePrediction.xaml</DependentUpon>
+	  </Compile>
     <Compile Include="EmergencyTriage.xaml.cs">
       <DependentUpon>EmergencyTriage.xaml</DependentUpon>
     </Compile>
+	 
     <Compile Include="LandingWindow.xaml.cs">
       <DependentUpon>LandingWindow.xaml</DependentUpon>
     </Compile>

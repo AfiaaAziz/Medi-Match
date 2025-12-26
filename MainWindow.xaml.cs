@@ -66,6 +66,24 @@ namespace HospitalSchedulerUI
                 }
             }
             catch { }
+
+
+            // Load Disease Predictor
+            try
+            {
+                var diseasePredictor = new DiseasePrediction();
+                var diseaseHost = this.FindName("DiseaseHost") as ContentControl;
+                if (diseaseHost != null)
+                {
+                    diseaseHost.Content = diseasePredictor;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Failed to load Disease Predictor: {ex.Message}", "Error",
+                    MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+           
         }
 
         // NAVIGATION HELPERS
@@ -77,8 +95,8 @@ namespace HospitalSchedulerUI
             GraphPanel.Visibility = Visibility.Collapsed;
             // hide embedded triage control when showing other pages
             try { var triagePanel = this.FindName("TriagePanel") as Border; if (triagePanel != null) triagePanel.Visibility = Visibility.Collapsed; } catch { }
+            try { var diseasePanel = this.FindName("DiseasePanel") as Border; if (diseasePanel != null) diseasePanel.Visibility = Visibility.Collapsed; } catch { }
         }
-
 
 
         // made public so other windows can navigate to scheduler view
@@ -89,6 +107,7 @@ namespace HospitalSchedulerUI
             ScheduleGrid.Visibility = Visibility.Collapsed;
             GraphPanel.Visibility = Visibility.Collapsed;
             try { var triagePanel = this.FindName("TriagePanel") as Border; if (triagePanel != null) triagePanel.Visibility = Visibility.Collapsed; } catch { }
+            try { var diseasePanel = this.FindName("DiseasePanel") as Border; if (diseasePanel != null) diseasePanel.Visibility = Visibility.Collapsed; } catch { }
         }
 
         private void ShowSchedule()
@@ -98,6 +117,7 @@ namespace HospitalSchedulerUI
             ScheduleGrid.Visibility = Visibility.Visible;
             GraphPanel.Visibility = Visibility.Collapsed;
             try { var triagePanel = this.FindName("TriagePanel") as Border; if (triagePanel != null) triagePanel.Visibility = Visibility.Collapsed; } catch { }
+            try { var diseasePanel = this.FindName("DiseasePanel") as Border; if (diseasePanel != null) diseasePanel.Visibility = Visibility.Collapsed; } catch { }
         }
 
         private void ShowGraph()
@@ -107,6 +127,7 @@ namespace HospitalSchedulerUI
             ScheduleGrid.Visibility = Visibility.Collapsed;
             GraphPanel.Visibility = Visibility.Visible;
             try { var triagePanel = this.FindName("TriagePanel") as Border; if (triagePanel != null) triagePanel.Visibility = Visibility.Collapsed; } catch { }
+            try { var diseasePanel = this.FindName("DiseasePanel") as Border; if (diseasePanel != null) diseasePanel.Visibility = Visibility.Collapsed; } catch { }
         }
 
         private void NavHome_Click(object sender, RoutedEventArgs e)
@@ -142,6 +163,35 @@ namespace HospitalSchedulerUI
             }
             catch { }
         }
+
+        // ADD THIS ENTIRE NEW METHOD HERE ↓↓↓
+        private void NavDisease_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                // Hide all other panels
+                HomePanel.Visibility = Visibility.Collapsed;
+                SchedulerPanel.Visibility = Visibility.Collapsed;
+                ScheduleGrid.Visibility = Visibility.Collapsed;
+                GraphPanel.Visibility = Visibility.Collapsed;
+
+                var triagePanel = this.FindName("TriagePanel") as Border;
+                if (triagePanel != null) triagePanel.Visibility = Visibility.Collapsed;
+
+                // Show Disease Prediction panel
+                var diseasePanel = this.FindName("DiseasePanel") as Border;
+                if (diseasePanel != null)
+                {
+                    diseasePanel.Visibility = Visibility.Visible;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Navigation error: {ex.Message}", "Error",
+                    MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+        
 
         private void NavGraph_Click(object sender, RoutedEventArgs e)
         {

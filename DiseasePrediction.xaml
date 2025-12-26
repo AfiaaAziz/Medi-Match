@@ -1,0 +1,209 @@
+﻿<UserControl x:Class="HospitalSchedulerUI.DiseasePrediction"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             Background="#FFF5F5F5">
+
+    <UserControl.Resources>
+        <!-- Theme Colors -->
+        <SolidColorBrush x:Key="PrimaryDark" Color="#1a5276"/>
+        <SolidColorBrush x:Key="AccentBlue" Color="#3498db"/>
+        <SolidColorBrush x:Key="SuccessGreen" Color="#27ae60"/>
+        <SolidColorBrush x:Key="WarningOrange" Color="#e67e22"/>
+        <SolidColorBrush x:Key="DangerRed" Color="#e74c3c"/>
+        <SolidColorBrush x:Key="LightGray" Color="#ecf0f1"/>
+
+        <!-- Card Style -->
+        <Style x:Key="CardStyle" TargetType="Border">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="BorderBrush" Value="#bdc3c7"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="CornerRadius" Value="12"/>
+            <Setter Property="Padding" Value="25"/>
+            <Setter Property="Effect">
+                <Setter.Value>
+                    <DropShadowEffect BlurRadius="15" ShadowDepth="2" Opacity="0.2" Color="#2c3e50"/>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- Button Style -->
+        <Style x:Key="ModernButton" TargetType="Button">
+            <Setter Property="Background" Value="{StaticResource SuccessGreen}"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="Padding" Value="20,12"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" 
+                                CornerRadius="8" 
+                                Padding="{TemplateBinding Padding}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#229954"/>
+                </Trigger>
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter Property="Background" Value="#95a5a6"/>
+                    <Setter Property="Cursor" Value="No"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
+
+    <Grid>
+        <!-- Animated Gradient Header -->
+        <Border Height="120" VerticalAlignment="Top">
+            <Border.Background>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                    <GradientStop Color="#1a5276" Offset="0"/>
+                    <GradientStop Color="#2874a6" Offset="0.5"/>
+                    <GradientStop Color="#3498db" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.Background>
+
+            <StackPanel VerticalAlignment="Center" Margin="40,0">
+                <TextBlock Text="🧠 AI-POWERED DISEASE PREDICTION" 
+                          Foreground="White" FontSize="32" FontWeight="Bold"
+                          HorizontalAlignment="Left"/>
+                <TextBlock Text="Advanced Machine Learning • 95%+ Accuracy • Instant Diagnosis" 
+                          Foreground="#ecf0f1" FontSize="14" Margin="0,8,0,0"
+                          HorizontalAlignment="Left" Opacity="0.9"/>
+            </StackPanel>
+        </Border>
+
+        <!-- Main Content -->
+        <ScrollViewer Margin="0,120,0,0" VerticalScrollBarVisibility="Auto">
+            <Grid Margin="40,30,40,40">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1.2*"/>
+                    <ColumnDefinition Width="20"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- LEFT PANEL: Symptom Selection -->
+                <Border Grid.Column="0" Style="{StaticResource CardStyle}">
+                    <StackPanel>
+                        <TextBlock Text="🔍 SELECT SYMPTOMS" FontSize="22" FontWeight="Bold" 
+                                  Foreground="{StaticResource PrimaryDark}" Margin="0,0,0,15"/>
+
+                        <!-- Selected Count -->
+                        <Border Background="#d5f4e6" CornerRadius="6" Padding="10" Margin="0,0,0,15">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="✓" Foreground="{StaticResource SuccessGreen}" 
+                                          FontSize="16" FontWeight="Bold" Margin="0,0,8,0"/>
+                                <TextBlock x:Name="txtSelectedCount" Text="0 symptoms selected" 
+                                          FontWeight="SemiBold" VerticalAlignment="Center"/>
+                            </StackPanel>
+                        </Border>
+
+                        <!-- Symptoms Panel with ScrollViewer -->
+                        <Border Background="#fafafa" CornerRadius="8" BorderBrush="#dfe6e9" BorderThickness="1">
+                            <ScrollViewer Height="450" VerticalScrollBarVisibility="Auto">
+                                <WrapPanel x:Name="SymptomsPanel" Margin="15"/>
+                            </ScrollViewer>
+                        </Border>
+
+                        <!-- Action Buttons -->
+                        <Grid Margin="0,25,0,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="10"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Button x:Name="btnPredict" Content="🎯 ANALYZE DISEASE" 
+                                   Grid.Column="0"
+                                   Height="55" Style="{StaticResource ModernButton}"
+                                   Click="btnPredict_Click"/>
+
+                            <Button Content="🔄 CLEAR ALL" Grid.Column="2"
+                                   Height="55" Background="#95a5a6" Foreground="White"
+                                   FontWeight="Bold" FontSize="14" BorderThickness="0"
+                                   Click="btnClear_Click" Cursor="Hand">
+                                <Button.Template>
+                                    <ControlTemplate TargetType="Button">
+                                        <Border Background="{TemplateBinding Background}" 
+                                                CornerRadius="8" Padding="20,12">
+                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        </Border>
+                                    </ControlTemplate>
+                                </Button.Template>
+                            </Button>
+                        </Grid>
+                    </StackPanel>
+                </Border>
+
+                <!-- RIGHT PANEL: Results -->
+                <Border Grid.Column="2" Style="{StaticResource CardStyle}">
+                    <StackPanel>
+                        <TextBlock Text="📊 DIAGNOSIS RESULTS" FontSize="22" FontWeight="Bold" 
+                                  Foreground="{StaticResource PrimaryDark}" Margin="0,0,0,20"/>
+
+                        <!-- Main Prediction Card -->
+                        <Border x:Name="borderMainResult" Background="#e8f8f5" 
+                                CornerRadius="10" Padding="20" Margin="0,0,0,20">
+                            <StackPanel>
+                                <TextBlock Text="🎯 PRIMARY DIAGNOSIS" FontWeight="Bold" 
+                                          FontSize="13" Foreground="#16a085" Margin="0,0,0,10"/>
+
+                                <TextBlock x:Name="txtTopDisease" Text="Select symptoms to begin analysis" 
+                                          FontSize="20" FontWeight="Bold" 
+                                          Foreground="{StaticResource PrimaryDark}"
+                                          TextWrapping="Wrap" Margin="0,0,0,8"/>
+
+                                <TextBlock x:Name="txtConfidence" Text="Confidence: --%"  
+                                          Foreground="Gray" Margin="0,5,0,0"/>
+                            </StackPanel>
+                        </Border>
+
+                        <!-- Recommendations -->
+                        <Border Background="#fff9e6" CornerRadius="8" Padding="15" Margin="0,0,0,15">
+                            <StackPanel>
+                                <TextBlock Text="👨‍⚕️ RECOMMENDATIONS" FontWeight="Bold" 
+                                          Foreground="{StaticResource WarningOrange}" Margin="0,0,0,10"/>
+
+                                <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
+                                    <TextBlock Text="Specialist:" Width="110" FontWeight="SemiBold"/>
+                                    <TextBlock x:Name="txtSpecialist" Text="--" Foreground="{StaticResource PrimaryDark}"/>
+                                </StackPanel>
+
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Department:" Width="110" FontWeight="SemiBold"/>
+                                    <TextBlock x:Name="txtDepartment" Text="--" Foreground="{StaticResource PrimaryDark}"/>
+                                </StackPanel>
+                            </StackPanel>
+                        </Border>
+
+                        <!-- Other Predictions -->
+                        <Border Background="#f8f9fa" CornerRadius="8" Padding="15">
+                            <StackPanel>
+                                <TextBlock Text="🔬 OTHER POSSIBLE DISEASES" FontWeight="Bold" 
+                                          Margin="0,0,0,10"/>
+                                <ListBox x:Name="lstOtherDiseases" 
+                                        Background="Transparent" BorderThickness="0"
+                                        Height="150"/>
+                            </StackPanel>
+                        </Border>
+
+                        <!-- Status Message -->
+                        <Border x:Name="statusBorder" Background="#d1ecf1" 
+                               CornerRadius="8" Padding="12" Margin="0,20,0,0">
+                            <TextBlock x:Name="txtStatus" 
+                                      Text="ℹ️ Select symptoms and click 'Analyze Disease'" 
+                                      TextWrapping="Wrap" 
+                                      Foreground="#0c5460"/>
+                        </Border>
+                    </StackPanel>
+                </Border>
+            </Grid>
+        </ScrollViewer>
+    </Grid>
+</UserControl>

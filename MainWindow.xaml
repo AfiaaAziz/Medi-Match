@@ -57,6 +57,8 @@
                     <Button x:Name="NavGraph" Content="Graph" Width="100" Margin="10,0" Click="NavGraph_Click" Style="{StaticResource NavButtonStyle}"/>
                     <Button x:Name="NavEmergency" Content="🚨 Triage" Width="110" Margin="10,0" 
                      Click="NavEmergency_Click" Style="{StaticResource NavButtonStyle}"/>
+					<Button x:Name="NavDisease" Content="🧠 Disease AI" Width="120" Margin="10,0"
+                    Click="NavDisease_Click" Style="{StaticResource NavButtonStyle}"/>
 
                     
                 </StackPanel>
@@ -205,6 +207,10 @@
                 <Border x:Name="TriagePanel" Grid.Row="1" Grid.RowSpan="3" Margin="0,10" Visibility="Collapsed" Background="Transparent">
                     <ContentControl x:Name="TriageHost" />
                 </Border>
+
+				<Border x:Name="DiseasePanel" Grid.Row="1" Grid.RowSpan="3" Margin="0,10" Visibility="Collapsed" Background="Transparent">
+					<ContentControl x:Name="DiseaseHost" />
+				</Border>
 
                 <!-- GRAPH PANEL -->
                 <Grid x:Name="GraphPanel" Grid.Row="2" Grid.RowSpan="2" Visibility="Collapsed">
